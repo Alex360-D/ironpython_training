@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from fixture.group import GroupHelper
-from fixture.application import Application
+from model.group import Group
+import random
+import string
 
-app = Application()
-group = GroupHelper(app)
-
-def test_add_group():
-    main_window = group.open_application()
-    old_list = group.get_group_list(main_window)
-    group.add_new_group(main_window, 'test group')
-    new_list = group.get_group_list(main_window)
-    old_list.append('test group')
+def test_add_group(app):
+    old_list = app.group.get_group_list(main_window)
+    group = Group(name=random_string("group_", 10))
+    app.group.add_new_group(main_window, group)
+    new_list = app.group.get_group_list(main_window)
+    old_list.append(group)
     assert sorted(old_list) == sorted(new_list)
-    group.close_application(main_window)
+
+def random_string(prefix, maxlen):
+    symbols = string.ascii_letters + string.digits + " "*5
+    return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
