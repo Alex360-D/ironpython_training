@@ -19,8 +19,8 @@ class Application2:
 
     def __init__(self):
         self.group = GroupHelper(self)
-        application = Application.Launch("c:\\Devel\\ironpython_training\\App\\AddressBook\\AddressBook.exe")
-        self.main_window = application.GetWindow("Free Address Book")
+        self.application = Application.Launch("c:\\Devel\\ironpython_training\\App\\AddressBook\\AddressBook.exe")
+        self.main_window = self.application.GetWindow("Free Address Book")
 
     def close_application(self):
         self.main_window.Get(SearchCriteria.ByAutomationId("uxExitAddressButton")).Click()
