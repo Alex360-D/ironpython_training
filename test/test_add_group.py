@@ -9,7 +9,7 @@ def test_add_group(app):
     group = Group(name=random_string("group_", 10))
     app.group.add_new_group(app.main_window, group)
     new_list = app.group.get_group_list(app.main_window)
-    old_list.append(group)
+    old_list.append(group.name)
     assert sorted(old_list) == sorted(new_list)
 
 def random_string(prefix, maxlen):
